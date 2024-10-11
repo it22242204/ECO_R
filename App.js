@@ -13,6 +13,7 @@ import CollectionConfirmation from './screens/CollectionConfirmation';
 import SignIn from './screens/SignIn';
 import SignUp from './screens/SignUp';
 import InsertCard from './screens/InsertCard';
+import Signin_Signup from './screens/Signin_Signup';
 
 const Stack = createStackNavigator();
 
@@ -20,9 +21,12 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator 
-        initialRouteName="AdminProductsScreen"
+        initialRouteName="Signin_Signup"
         screenOptions={{ headerShown: false }} // Hides the default header for all screens
       >
+        <Stack.Screen name="Signin_Signup" component={Signin_Signup} />
+        <Stack.Screen name="SignIn" component={SignIn} />
+        <Stack.Screen name="SignUp" component={SignUp} />
         <Stack.Screen name="AccountScreen" component={AccountScreen} />
         <Stack.Screen name="AdminProductsScreen" component={AdminProductsScreen} />
         <Stack.Screen name="Collection" component={Collection} />
@@ -32,8 +36,6 @@ export default function App() {
         <Stack.Screen name="Security" component={Security} />
         <Stack.Screen name="NewProduct" component={NewProduct} />
         <Stack.Screen name="CollectionConfirmation" component={CollectionConfirmation} />
-        <Stack.Screen name="SignIn" component={SignIn} />
-        <Stack.Screen name="SignUp" component={SignUp} />
         <Stack.Screen name="InsertCard" component={InsertCard} />
       </Stack.Navigator>
     </NavigationContainer>

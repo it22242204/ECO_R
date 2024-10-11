@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, TouchableOpacity, Linking, ActivityIndicator, StyleSheet } from 'react-native';
 import * as Location from 'expo-location';
+import { useNavigation } from '@react-navigation/native'; // Import the useNavigation hook
 
 const LocationTracker = () => {
+  const navigation = useNavigation(); // Get the navigation object
   const [currentLocation, setCurrentLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -47,6 +49,10 @@ const LocationTracker = () => {
     Linking.openSettings();
   };
 
+  const goBackToCollection = () => {
+    navigation.navigate('Collection'); // Navigate back to the Collection screen
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Get Coordinates</Text>
@@ -83,6 +89,13 @@ const LocationTracker = () => {
           </TouchableOpacity>
         )
       )}
+
+      {/* Button to go back to Collection screen */}
+      <TouchableOpacity onPress={goBackToCollection}>
+        <View style={[styles.backbuttonContainer, styles.shadow]}>
+          <Text style={styles.buttonText}>Back to Collection</Text>
+        </View>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -114,6 +127,13 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     backgroundColor: '#28a745',
+    padding: 15,
+    margin: 10,
+    alignItems: 'center',
+    borderRadius: 8,
+  }, 
+  backbuttonContainer: {
+    backgroundColor: 'red',
     padding: 15,
     margin: 10,
     alignItems: 'center',
